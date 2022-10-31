@@ -8,7 +8,8 @@
     <name>Asciidoctor PDF CJK Maven example</name>
     <description>
         An example project that demonstrates how to convert AsciiDoc to PDF using CJK resources
-        (https://github.com/chloerei/asciidoctor-pdf-cjk) to properly show CJK (Chinese, Japanese and Korean) characters.
+        (https://github.com/chloerei/asciidoctor-pdf-cjk) to properly show CJK (Chinese, Japanese and Korean)
+        characters.
     </description>
 
     <properties>
@@ -22,8 +23,9 @@
         <pdf.cjk.version>0.1.3</pdf.cjk.version>
         <pdf.cjk.kaigen.version>0.1.1</pdf.cjk.kaigen.version>
         <pdf.cjk.kaigen.fonts.download.uri>https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/releases/download/v0.1.0-fonts</pdf.cjk.kaigen.fonts.download.uri>
-        <pdf.cjk.kaigen.themes.download.uri>https://raw.githubusercontent.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/master/data/themes</pdf.cjk.kaigen.themes.download.uri>
+        <pdf.cjk.kaigen.themes.download.uri>https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/archive/refs/heads/master.zip</pdf.cjk.kaigen.themes.download.uri>
         <pdf.cjk.kaigen.download.dir>${project.build.directory}/downloaded-resources</pdf.cjk.kaigen.download.dir>
+        <pdf.cjk.kaigen.local.dir>${user.home}/.cjk</pdf.cjk.kaigen.local.dir>
     </properties>
 
     <build>
@@ -35,16 +37,42 @@
                 <version>1.6.8</version>
                 <executions>
                     <!-- Chinese theme & fonts -->
+                    <!--<execution>-->
+                    <!--    <id>install-theme-KaiGenGothicCN</id>-->
+                    <!--    <phase>initialize</phase>-->
+                    <!--    <goals>-->
+                    <!--        <goal>wget</goal>-->
+                    <!--    </goals>-->
+                    <!--    <configuration>-->
+                    <!--        &lt;!&ndash;<url>${pdf.cjk.kaigen.themes.download.uri}/KaiGenGothicCN-theme.yml</url>&ndash;&gt;-->
+                    <!--        <url>${pdf.cjk.kaigen.themes.download.uri}</url>-->
+                    <!--        &lt;!&ndash;<url>https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicCN-theme.yml</url>&ndash;&gt;-->
+                    <!--        &lt;!&ndash;<url>https://gitee.com/ab-code/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicCN-theme.yml</url>&ndash;&gt;-->
+                    <!--        <outputDirectory>${pdf.cjk.kaigen.download.dir}/themes</outputDirectory>-->
+                    <!--        <outputFileName>out</outputFileName>-->
+                    <!--        <overwrite>true</overwrite>-->
+                    <!--        &lt;!&ndash;<md5>8f40b658f32767456efba0267eb13c81</md5>&ndash;&gt;-->
+                    <!--        &lt;!&ndash;<readTimeOut>600000</readTimeOut>&ndash;&gt;-->
+                    <!--        <unpack>true</unpack>-->
+                    <!--    </configuration>-->
+                    <!--</execution>-->
                     <execution>
-                        <id>install-theme-KaiGenGothicCN</id>
+                        <id>install-theme</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>wget</goal>
                         </goals>
                         <configuration>
-                            <url>${pdf.cjk.kaigen.themes.download.uri}/KaiGenGothicCN-theme.yml</url>
-                            <outputDirectory>${pdf.cjk.kaigen.download.dir}/themes</outputDirectory>
-                            <md5>8f40b658f32767456efba0267eb13c81</md5>
+                            <!--<url>${pdf.cjk.kaigen.themes.download.uri}/KaiGenGothicCN-theme.yml</url>-->
+                            <url>${pdf.cjk.kaigen.themes.download.uri}</url>
+                            <!--<url>https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicCN-theme.yml</url>-->
+                            <!--<url>https://gitee.com/ab-code/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicCN-theme.yml</url>-->
+                            <outputDirectory>${pdf.cjk.kaigen.local.dir}</outputDirectory>
+                            <outputFileName>kaigen.zip</outputFileName>
+                            <overwrite>true</overwrite>
+                            <!--<md5>8f40b658f32767456efba0267eb13c81</md5>-->
+                            <!--<readTimeOut>600000</readTimeOut>-->
+                            <unpack>true</unpack>
                         </configuration>
                     </execution>
                     <execution>
@@ -96,18 +124,21 @@
                         </configuration>
                     </execution>
                     <!-- Japanese theme & fonts -->
-                    <execution>
-                        <id>install-theme-KaiGenGothicJP</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${pdf.cjk.kaigen.themes.download.uri}/KaiGenGothicJP-theme.yml</url>
-                            <outputDirectory>${pdf.cjk.kaigen.download.dir}/themes</outputDirectory>
-                            <md5>33ae321471a2fc6e312b8744fdf6fbc0</md5>
-                        </configuration>
-                    </execution>
+                    <!--<execution>-->
+                    <!--    <id>install-theme-KaiGenGothicJP</id>-->
+                    <!--    <phase>initialize</phase>-->
+                    <!--    <goals>-->
+                    <!--        <goal>wget</goal>-->
+                    <!--    </goals>-->
+                    <!--    <configuration>-->
+                    <!--        <url>${pdf.cjk.kaigen.themes.download.uri}/KaiGenGothicJP-theme.yml</url>-->
+                    <!--        &lt;!&ndash;<url>https://github.com/chloerei/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicJP-theme.yml</url>&ndash;&gt;-->
+                    <!--        &lt;!&ndash;<url>https://gitee.com/ab-code/asciidoctor-pdf-cjk-kai_gen_gothic/blob/master/data/themes/KaiGenGothicJP-theme.yml</url>&ndash;&gt;-->
+                    <!--        <outputDirectory>${pdf.cjk.kaigen.download.dir}/themes</outputDirectory>-->
+                    <!--        &lt;!&ndash;<md5>33ae321471a2fc6e312b8744fdf6fbc0</md5>&ndash;&gt;-->
+                    <!--        <readTimeOut>600000</readTimeOut>-->
+                    <!--    </configuration>-->
+                    <!--</execution>-->
                     <execution>
                         <id>install-font-KaiGenGothicJP-Bold-Italic</id>
                         <phase>initialize</phase>
@@ -156,7 +187,7 @@
                             <md5>a623c6aaf9ba3c992ecd10698586da62</md5>
                         </configuration>
                     </execution>
-                    <!-- RobotoMono Fonts -->
+                     <!--RobotoMono Fonts -->
                     <execution>
                         <id>install-font-RobotoMono-Bold-Italic</id>
                         <phase>initialize</phase>
@@ -208,6 +239,29 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${pdf.cjk.kaigen.download.dir}/themes</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${user.home}/.cjk/asciidoctor-pdf-cjk-kai_gen_gothic-master/data/themes</directory>
+                                    <!--<filtering>true</filtering>-->
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>${asciidoctor.maven.plugin.version}</version>
@@ -254,6 +308,7 @@
                                 <scripts>cjk</scripts>
                                 <!-- Set KaiGen Gothic Chinese theme -->
                                 <pdf-theme>KaiGenGothicCN</pdf-theme>
+                                <!--<pdf-themesdir>${pdf.cjk.kaigen.download.dir}/themes</pdf-themesdir>-->
                                 <pdf-themesdir>${pdf.cjk.kaigen.download.dir}/themes</pdf-themesdir>
                                 <pdf-fontsdir>${pdf.cjk.kaigen.download.dir}/fonts</pdf-fontsdir>
                             </attributes>
@@ -282,6 +337,7 @@
                                 <scripts>cjk</scripts>
                                 <!-- Set KaiGen Gothic Japanese theme -->
                                 <pdf-theme>KaiGenGothicJP</pdf-theme>
+                                <!--<pdf-themesdir>${pdf.cjk.kaigen.download.dir}/themes</pdf-themesdir>-->
                                 <pdf-themesdir>${pdf.cjk.kaigen.download.dir}/themes</pdf-themesdir>
                                 <pdf-fontsdir>${pdf.cjk.kaigen.download.dir}/fonts</pdf-fontsdir>
                             </attributes>
